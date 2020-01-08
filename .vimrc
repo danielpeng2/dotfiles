@@ -1,46 +1,25 @@
-call plug#begin('~/.vim/myPlugins')
+call plug#begin('~/.vim/plugged')
 
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'jacoborus/tender.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'lervag/vimtex'
-Plug 'sirver/ultisnips'
+Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
-" vimtex settings
-let g:tex_flavor='latex'
-let g:vimtex_quickfix_mode=0
-set conceallevel=1
-let g:tex_conceal='abdmg'
-
-" ultisnips settings
-let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsJumpForwardTrigger = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-
-" save file and generate latex pdf 
-command Latex :w | :!latexmk -pdf
-
 map <C-n> :NERDTreeToggle<CR>
 map <C-p> :FZF<CR>
-set pastetoggle=<F2>
-" gets rid of yellow highlighting that appears
-set term=screen-256color
-set t_ut=
-" enable colorscheme
-set background=dark
-colorscheme palenight
+
+" theme
+colorscheme nord
+let g:lightline = { 'colorscheme': 'nord', }
+
 " syntax highlighting
 syntax enable
 
-" relative line numbers
-" set relativenumber
 " line numbers
+set relativenumber
 set number
 
 " tab characters have width 4
@@ -56,18 +35,21 @@ set autoindent
 
 " 5 line buffer when scrolling
 set scrolloff=5
+
 " always display status bar
 set laststatus=2
 " remove default status bar
 set noshowmode
+
 " stop comments from being automatically inserted
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-" disable bell sounds
-set visualbell
-set t_vb=
-" Make j and k move to the next row, not file line
+
+" make j and k move to the next row, not file line
 nnoremap j gj
 nnoremap k gk
+
+" fix delay escaping to normal mode
+set ttimeoutlen=50
 
 " enable highlight search
 set hlsearch
@@ -80,3 +62,5 @@ set smartcase
 " Press <leader> Enter to remove search highlights
 noremap <silent> <leader><cr> :noh<cr>
 
+" sets default vim register to clipboard
+set clipboard=unnamedplus

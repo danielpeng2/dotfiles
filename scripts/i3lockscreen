@@ -1,0 +1,10 @@
+#!/bin/bash
+
+img="$HOME/.cache/i3lock.png"
+
+# Take screenshot for background
+scrot $img
+# Pixelate background image
+convert $img -scale 10% -scale 1000% $img
+# Run i3lock with background image
+i3lock -i $img
