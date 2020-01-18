@@ -7,8 +7,7 @@ HISTSIZE=1000
 SAVEHIST=1000
 setopt SHARE_HISTORY
 
-# Basic auto/tab complete
-autoload -U compinit
+# Basic auto/tab complete autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
@@ -24,6 +23,15 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
+
+# Load version control information
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+RPROMPT=\$vcs_info_msg_0_
+zstyle ':vcs_info:git:*' formats ' %F{245}(%b)%f'
+zstyle ':vcs_info:*' enable git
 
 # Set prompt and change color for different vi modes
 function zle-line-init zle-keymap-select {
