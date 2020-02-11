@@ -184,7 +184,7 @@ bar {
 for_window [class=".*"] border pixel 1
 
 # Set gap size
-gaps inner 10
+gaps inner 5
 
 # Remove gaps when there is only 1 window
 smart_gaps on

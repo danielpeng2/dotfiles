@@ -5,6 +5,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'arcticicestudio/nord-vim'
+Plug 'ayu-theme/ayu-vim'
 
 call plug#end()
 
@@ -12,8 +13,10 @@ map <C-n> :NERDTreeToggle<CR>
 map <C-p> :FZF<CR>
 
 " theme
-colorscheme nord
-let g:lightline = { 'colorscheme': 'nord', }
+set termguicolors
+let ayucolor="mirage"
+colorscheme ayu
+let g:lightline = { 'colorscheme': 'ayu', }
 
 " syntax highlighting
 syntax enable

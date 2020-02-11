@@ -6,8 +6,11 @@ ln -fsv $PWD/.vimrc ~/
 # zsh
 ln -fsv $PWD/.zshrc ~/
 
+# kitty
+ln -fsv $PWD/kitty.conf ~/.config/kitty
+
 # urxvt
-ln -fsv $PWD/.Xresources ~/
+# ln -fsv $PWD/.Xresources ~/
 
 # scripts
 ln -fsv $PWD/scripts/display_switch /usr/local/bin
