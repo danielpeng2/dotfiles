@@ -4,7 +4,11 @@ Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'arcticicestudio/nord-vim'
+Plug 'tpope/vim-commentary'
+Plug 'dense-analysis/ale'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'ayu-theme/ayu-vim'
 
 call plug#end()
 
@@ -12,8 +16,9 @@ map <C-n> :NERDTreeToggle<CR>
 map <C-p> :FZF<CR>
 
 " theme
-colorscheme nord
-let g:lightline = { 'colorscheme': 'nord', }
+set termguicolors
+let ayucolor="mirage"
+colorscheme ayu
 
 " syntax highlighting
 syntax enable
@@ -32,6 +37,9 @@ set expandtab
 set smarttab
 " auto indenting
 set autoindent
+" custom indenting by file type
+autocmd Filetype javascript setlocal shiftwidth=2 tabstop=2
+autocmd Filetype typescript setlocal shiftwidth=2 tabstop=2
 
 " 5 line buffer when scrolling
 set scrolloff=5
