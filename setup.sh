@@ -9,6 +9,9 @@ ln -fsv $PWD/.zshrc ~/
 # kitty
 ln -fsv $PWD/kitty.conf ~/.config/kitty
 
+# tmux
+ln -fsv $PWD/.tmux.conf ~/
+
 # urxvt
 # ln -fsv $PWD/.Xresources ~/
 
