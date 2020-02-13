@@ -7,8 +7,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
-Plug 'ayu-theme/ayu-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 
@@ -23,9 +23,9 @@ if exists('+termguicolors')
 endif
 
 " theme
-let ayucolor="mirage"
-colorscheme ayu
-let g:lightline = { 'colorscheme': 'ayu', }
+set background=dark
+colorscheme gruvbox
+let g:lightline = { 'colorscheme': 'gruvbox' }
 
 " syntax highlighting
 syntax enable
