@@ -55,3 +55,6 @@ bindkey '^e' edit-command-line
 
 # Colorize ls output
 alias ls='ls --color'
+
+# Attach to existing tmux session, otherwise start a new one
+[ -z "$TMUX" ] && { tmux attach || exec tmux new-session; }

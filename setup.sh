@@ -7,7 +7,7 @@ ln -fsv $PWD/.vimrc ~/
 ln -fsv $PWD/.zshrc ~/
 
 # kitty
-ln -fsv $PWD/kitty.conf ~/.config/kitty
+ln -fsv $PWD/.config/kitty/kitty.conf ~/.config/kitty
 
 # tmux
 ln -fsv $PWD/.tmux.conf ~/
@@ -16,11 +16,15 @@ ln -fsv $PWD/.tmux.conf ~/
 # ln -fsv $PWD/.Xresources ~/
 
 # scripts
-ln -fsv $PWD/scripts/display_switch /usr/local/bin
-ln -fsv $PWD/scripts/i3lockscreen /usr/local/bin 
+ln -fsv $PWD/.local/bin/* /usr/local/bin
 
 # i3
-ln -fsv $PWD/i3config ~/.config/i3/config
-ln -fsv $PWD/i3blocks ~/.config/i3blocks/config
-ln -fsv $PWD/i3lock.service /etc/systemd/system
+ln -fsv $PWD/.config/i3/config ~/.config/i3/config
+
+# i3blocks
+ln -fsv $PWD/.config/i3blocks/config ~/.config/i3blocks/config
+ln -fsv $PWD/.config/i3blocks/i3blocks_scripts ~/.config/i3blocks
+
+# lockscreen
+ln -fsv $PWD/.config/i3/i3lock.service /etc/systemd/system
 systemctl enable i3lock.service
