@@ -5,10 +5,10 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
-Plug 'dense-analysis/ale'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'ayu-theme/ayu-vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
