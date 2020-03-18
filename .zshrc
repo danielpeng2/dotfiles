@@ -33,7 +33,7 @@ zstyle ':vcs_info:git:*' formats ' %F{245}(%b)%f'
 zstyle ':vcs_info:*' enable git
 
 # Set prompt
-PROMPT="[%B%F{yellow}%~%f%b]$ "
+PROMPT="%B%F{yellow}%~%f%b "
 
 # Edit line in vim with ctrl-e
 autoload edit-command-line; zle -N edit-command-line
