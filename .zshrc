@@ -46,7 +46,14 @@ bindkey '^x^e' edit-command-line
 alias ls='ls --color'
 
 # Attach to existing tmux session, otherwise start a new one
-[ -z "$TMUX" ] && { tmux attach || exec tmux new-session; }
+if [ -z "$TMUX" ]; then
+    tmux attach || tmux new
+fi
+
+# add pyenv to path
+export PATH="/home/daniel/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
