@@ -33,7 +33,7 @@ zstyle ':vcs_info:git:*' formats ' %F{245}(%b)%f'
 zstyle ':vcs_info:*' enable git
 
 # Set prompt
-PROMPT="%B%F{yellow}%~%f%b "
+PROMPT="%B%F{yellow}%~ $ %f%b"
 
 # Edit line in vim with ctrl-e
 autoload edit-command-line; zle -N edit-command-line
@@ -54,6 +54,9 @@ fi
 export PATH="/home/daniel/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+# add poetry to path
+export PATH="$HOME/.poetry/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

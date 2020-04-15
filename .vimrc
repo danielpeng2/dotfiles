@@ -11,11 +11,16 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-obsession'
+Plug 'airblade/vim-gitgutter'
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
 map <C-n> :NERDTreeToggle<CR>
 map <C-p> :FZF<CR>
+
+" focus events for gitgutter
+let g:gitgutter_terminal_reports_focus=0
 
 " true colour support
 if exists('+termguicolors')
@@ -33,7 +38,6 @@ let g:lightline = { 'colorscheme': 'ayu', }
 syntax enable
 
 " line numbers
-set relativenumber
 set number
 
 " tab characters have width 4
