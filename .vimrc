@@ -30,9 +30,9 @@ if exists('+termguicolors')
 endif
 
 " theme
-let ayucolor="mirage"
+let ayucolor="dark"
 colorscheme ayu
-let g:lightline = { 'colorscheme': 'ayu', }
+let g:lightline = { 'colorscheme': 'ayu_dark', }
 
 " syntax highlighting
 syntax enable

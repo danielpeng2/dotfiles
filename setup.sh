@@ -7,7 +7,10 @@ ln -fsv $PWD/.vimrc ~/
 ln -fsv $PWD/.zshrc ~/
 
 # kitty
-ln -fsv $PWD/.config/kitty/kitty.conf ~/.config/kitty
+# ln -fsv $PWD/.config/kitty/kitty.conf ~/.config/kitty
+
+# alacritty
+ln -fsv $PWD/.config/alacritty/alacritty.yml ~/.config/alacritty
 
 # tmux
 ln -fsv $PWD/.tmux.conf ~/
