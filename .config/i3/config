@@ -211,7 +211,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Set Xresources file & set to laptop screen on startup
-exec "xrdb ~/.Xresources; display_switch l"
+# exec "xrdb ~/.Xresources; display_switch l"
 
 # Sound fixes
 exec "start-pulseaudio-x11; pactl unload-module module-x11-bell"

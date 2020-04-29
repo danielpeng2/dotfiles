@@ -5,15 +5,25 @@ temp_file=$(mktemp)
 if [ $1 = "l" ]
 then
     echo "Xft.dpi: 144" >> "$temp_file"
-    xrandr --output eDP1 --auto
+    xrandr --output VIRTUAL1 --off
     xrandr --output DP1 --off
-    xrandr --size 2256x1504
+    xrandr --output DP2-1 --off
+    xrandr --output DP2-2 --off
+    xrandr --output HDMI2 --off
+    xrandr --output HDMI1 --off
+    xrandr --output DP2 --off
+    xrandr --output eDP1 --mode 2256x1504 --pos 0x0 --rotate normal
 elif [ $1 = "m" ]
 then
     echo "Xft.dpi: 96" >> "$temp_file"
-    xrandr --output DP1 --auto
+    xrandr --output VIRTUAL1 --off
+    xrandr --output DP1 --off
+    xrandr --output DP2-2 --primary --mode 1920x1080 --pos 0x376 --rotate normal
     xrandr --output eDP1 --off
-    xrandr --size 1920x1080
+    xrandr --output DP2-1 --mode 1920x1080 --pos 1920x0 --rotate right
+    xrandr --output HDMI2 --off
+    xrandr --output HDMI1 --off
+    xrandr --output DP2 --off
 else
     echo "Invalid argument passed"
 fi
