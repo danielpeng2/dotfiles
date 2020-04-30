@@ -3,20 +3,17 @@
 # vim
 ln -fsv $PWD/.vimrc ~/
 
+# coc
+ln -fsv $PWD/.config/coc/coc-settings.json ~/.vim/
+
 # zsh
 ln -fsv $PWD/.zshrc ~/
-
-# kitty
-# ln -fsv $PWD/.config/kitty/kitty.conf ~/.config/kitty
 
 # alacritty
 ln -fsv $PWD/.config/alacritty/alacritty.yml ~/.config/alacritty
 
 # tmux
 ln -fsv $PWD/.tmux.conf ~/
-
-# urxvt
-# ln -fsv $PWD/.Xresources ~/
 
 # scripts
 ln -fsv $PWD/.local/bin/* /usr/local/bin

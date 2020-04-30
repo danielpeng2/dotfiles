@@ -32,7 +32,16 @@ endif
 " theme
 let ayucolor="dark"
 colorscheme ayu
-let g:lightline = { 'colorscheme': 'ayu_dark', }
+let g:lightline = {
+\ 'colorscheme': 'ayu_dark',
+\ 'active': {
+\   'left': [ [ 'mode', 'paste' ],
+\             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+\ },
+\ 'component_function': {
+\   'cocstatus': 'coc#status'
+\ },
+\ }
 
 " syntax highlighting
 syntax enable
