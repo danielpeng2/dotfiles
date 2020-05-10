@@ -7,8 +7,11 @@ ln -fsv $PWD/.zshrc ~/
 # tmux
 ln -fsv $PWD/.tmux.conf ~/
 
+# nvim
+ln -fsv $PWD/.config/nvim/init.vim ~/.config/nvim
 # coc
 ln -fsv $PWD/.config/coc/coc-settings.json ~/.vim/
+ln -fsv $PWD/.config/coc/coc-settings.json ~/.config/nvim
 # alacritty
 ln -fsv $PWD/.config/alacritty/alacritty.yml ~/.config/alacritty
 # i3
