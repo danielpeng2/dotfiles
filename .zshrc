@@ -61,3 +61,9 @@ export PATH="$HOME/.poetry/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# ssh to school server
+alias login="ssh d6peng@linux.student.cs.uwaterloo.ca"
+alias login_2="ssh d6peng@ubuntu1804-002.student.cs.uwaterloo.ca"
+alias login_4="ssh d6peng@ubuntu1804-004.student.cs.uwaterloo.ca"
+alias login_8="ssh d6peng@ubuntu1804-008.student.cs.uwaterloo.ca"
