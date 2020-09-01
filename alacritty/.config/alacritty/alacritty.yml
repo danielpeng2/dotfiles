@@ -1,15 +1,16 @@
 font:
+  size: 14
   normal:
     family: Hack
-    style: regular
+    style: Regular
 
   bold:
     family: Hack
-    style: bold
+    style: Bold
 
   italic:
     family: Hack
-    style: italic
+    style: Italic
 
   offset:
     x: -1

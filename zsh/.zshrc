@@ -43,7 +43,7 @@ bindkey '^x^e' edit-command-line
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Colorize ls output
-alias ls='ls --color'
+alias ls='ls -G'
 
 # Attach to existing tmux session, otherwise start a new one
 if [ -z "$TMUX" ]; then
@@ -51,9 +51,9 @@ if [ -z "$TMUX" ]; then
 fi
 
 # add pyenv to path
-export PATH="/home/daniel/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# export PATH="/home/daniel/.pyenv/bin:$PATH"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 
 # add poetry to path
 export PATH="$HOME/.poetry/bin:$PATH"
@@ -67,3 +67,11 @@ alias login="ssh d6peng@linux.student.cs.uwaterloo.ca"
 alias login_2="ssh d6peng@ubuntu1804-002.student.cs.uwaterloo.ca"
 alias login_4="ssh d6peng@ubuntu1804-004.student.cs.uwaterloo.ca"
 alias login_8="ssh d6peng@ubuntu1804-008.student.cs.uwaterloo.ca"
+
+# Set nvim as default editor
+alias vim='nvim'
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+
+# Fix issues in tmux
+export TERM=xterm-256color
