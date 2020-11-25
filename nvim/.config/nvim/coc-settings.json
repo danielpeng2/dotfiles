@@ -1,8 +1,7 @@
 {
-    "coc.preferences.jumpCommand": "drop",
     "python.pythonPath": "python3",
     "python.jediEnabled": false,
-    "python.jediPath": "/home/daniel/.local/lib/python3.6/site-packages",
-    "python.linting.pylintUseMinimalCheckers": false,
-    "python.linting.pylintArgs": ["--disable=missing-class-docstring,missing-module-docstring,missing-function-docstring,too-few-public-methods"]
+
+    "eslint.autoFixOnSave": true,
+    "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"]
 }
