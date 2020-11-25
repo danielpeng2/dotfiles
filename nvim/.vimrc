@@ -1,30 +1,37 @@
+" vim:fdm=marker
+
+" Plug {{{
 call plug#begin('~/.vim/plugged')
 
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-commentary'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
 Plug 'ayu-theme/ayu-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-obsession'
 Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-fugitive'
+Plug 'tmsvg/pear-tree'
 
 call plug#end()
+" }}}
 
-map <C-n> :NERDTreeToggle<CR>
-map <C-p> :FZF<CR>
+" Mappings {{{
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+
+map <C-p> :GFiles --exclude-standard --others --cached<CR>
 
 nnoremap ]q :cnext<CR>
 nnoremap [q :cprev<CR>
+" }}}
 
-" focus events for gitgutter
-let g:gitgutter_terminal_reports_focus=0
-
+" Theme / Status Bar{{{
 " true colour support
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -35,23 +42,35 @@ endif
 " theme
 let ayucolor="dark"
 colorscheme ayu
+syntax enable
+
+" status bar
 let g:lightline = {
 \ 'colorscheme': 'ayu_dark',
 \ 'active': {
 \   'left': [ [ 'mode', 'paste' ],
-\             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+\             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ],
+\   'right': [ [ 'lineinfo' ],
+\              [ 'percent' ],
+\              [ 'filetype' ] ]
 \ },
 \ 'component_function': {
-\   'cocstatus': 'coc#status'
+\   'cocstatus': 'coc#status',
+\   'filename': 'LightlineFilename'
 \ },
 \ }
 
-" syntax highlighting
-syntax enable
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
+" }}}
 
-" line numbers
-set number
-
+" Indenting {{{
 " tab characters have width 4
 set tabstop=4
 " indent uses width 4
@@ -65,7 +84,11 @@ set autoindent
 " custom indenting by file type
 autocmd Filetype javascript setlocal shiftwidth=2 tabstop=2
 autocmd Filetype typescript setlocal shiftwidth=2 tabstop=2
+autocmd Filetype typescriptreact setlocal shiftwidth=2 tabstop=2
+autocmd Filetype json setlocal shiftwidth=2 tabstop=2
+" }}}
 
+" {{{ Misc
 " 5 line buffer when scrolling
 set scrolloff=5
 
@@ -92,11 +115,52 @@ set incsearch
 set ignorecase
 " overrides ignorecase if pattern contains uppercase
 set smartcase
-" Press <leader> Enter to remove search highlights
-noremap <silent> <leader><cr> :noh<cr>
 
 " sets default vim register to clipboard
 set clipboard=unnamedplus
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+" line numbers
+set number
+
+" pear-tree smart pairs
+let g:pear_tree_smart_openers = 1
+let g:pear_tree_smart_closers = 1
+let g:pear_tree_smart_backspace = 1
+" }}}
+
+"{{{ NERDTree
+map <C-n> :NERDTreeToggle<CR>
+nmap <leader>nf :NERDTreeFind<CR>
+
+let g:NERDTreeMapOpenVSplit = "<C-v>"
+let g:NERDTreeMapOpenSplit = "<C-x>"
+
+" close nerdtree if last buffer open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"}}}
+
+" Coc {{{
+let g:coc_global_extensions = [
+  \ 'coc-tsserver',
+  \ 'coc-python'
+  \ ]
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
 
 " map <tab> to trigger completion and navigate to next item in coc
 inoremap <silent><expr> <TAB>
@@ -145,3 +209,7 @@ endfunction
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
+
+" Code actions
+nmap <leader>. <Plug>(coc-codeaction)
+" }}}
