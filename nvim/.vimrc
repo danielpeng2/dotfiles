@@ -13,7 +13,7 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-obsession'
-Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'tmsvg/pear-tree'
@@ -22,13 +22,27 @@ call plug#end()
 " }}}
 
 " Mappings {{{
-nnoremap <SPACE> <Nop>
+noremap <SPACE> <Nop>
 let mapleader=" "
 
 map <C-p> :GFiles --exclude-standard --others --cached<CR>
 
 nnoremap ]q :cnext<CR>
 nnoremap [q :cprev<CR>
+
+" cut to black hole register
+nnoremap <leader>x "_x
+nnoremap <leader>d "_d
+xnoremap <leader>d "_d
+xnoremap <leader>p "_dp
+
+" make j and k move to the next row, not file line
+nnoremap j gj
+nnoremap k gk
+
+" hunk operations for vim-signify
+nnoremap <leader>hp :SignifyHunkDiff<CR>
+nnoremap <leader>hu :SignifyHunkUndo<CR>
 " }}}
 
 " Theme / Status Bar{{{
@@ -100,10 +114,6 @@ set noshowmode
 " stop comments from being automatically inserted
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" make j and k move to the next row, not file line
-nnoremap j gj
-nnoremap k gk
-
 " fix delay escaping to normal mode
 set ttimeoutlen=50
 
@@ -135,6 +145,18 @@ set number
 let g:pear_tree_smart_openers = 1
 let g:pear_tree_smart_closers = 1
 let g:pear_tree_smart_backspace = 1
+
+" signify
+highlight clear SignColumn
+highlight SignifySignAdd    ctermfg=green  guifg=#91B362 cterm=NONE gui=NONE
+highlight SignifySignDelete ctermfg=red    guifg=#EA6C73 cterm=NONE gui=NONE
+highlight SignifySignChange ctermfg=yellow   guifg=#F9AF4F cterm=NONE gui=NONE
+
+" default updatetime 4000ms is not good for async update
+set updatetime=100
+
+" search only content, not filenames in AG
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 " }}}
 
 "{{{ NERDTree
