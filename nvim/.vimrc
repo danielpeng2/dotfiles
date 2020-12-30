@@ -9,14 +9,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-commentary'
-Plug 'ayu-theme/ayu-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'tpope/vim-obsession'
 Plug 'mhinz/vim-signify'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'tmsvg/pear-tree'
+Plug 'pineapplegiant/spaceduck'
 
 call plug#end()
 " }}}
@@ -54,13 +53,12 @@ if exists('+termguicolors')
 endif
 
 " theme
-let ayucolor="dark"
-colorscheme ayu
+colorscheme spaceduck
 syntax enable
 
 " status bar
 let g:lightline = {
-\ 'colorscheme': 'ayu_dark',
+\ 'colorscheme': 'spaceduck',
 \ 'active': {
 \   'left': [ [ 'mode', 'paste' ],
 \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ],
@@ -148,9 +146,9 @@ let g:pear_tree_smart_backspace = 1
 
 " signify
 highlight clear SignColumn
-highlight SignifySignAdd    ctermfg=green  guifg=#91B362 cterm=NONE gui=NONE
-highlight SignifySignDelete ctermfg=red    guifg=#EA6C73 cterm=NONE gui=NONE
-highlight SignifySignChange ctermfg=yellow   guifg=#F9AF4F cterm=NONE gui=NONE
+highlight SignifySignAdd    ctermfg=green  guifg=#5ccc96 cterm=NONE gui=NONE
+highlight SignifySignDelete ctermfg=red    guifg=#ce6f8f cterm=NONE gui=NONE
+highlight SignifySignChange ctermfg=yellow guifg=#f2ce00 cterm=NONE gui=NONE
 
 " default updatetime 4000ms is not good for async update
 set updatetime=100
