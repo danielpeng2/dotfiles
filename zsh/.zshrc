@@ -63,8 +63,8 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 # add pyenv to path
+export PATH="/home/daniel/.pyenv/bin:$PATH"
 if type pyenv > /dev/null; then
-    export PATH="/home/daniel/.pyenv/bin:$PATH"
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 fi

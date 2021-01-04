@@ -127,14 +127,8 @@ set smartcase
 " sets default vim register to clipboard
 set clipboard=unnamedplus
 
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+" always show sign column
+set signcolumn=yes
 
 " line numbers
 set number
@@ -171,7 +165,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Coc {{{
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
-  \ 'coc-python'
+  \ 'coc-pyright'
   \ ]
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')

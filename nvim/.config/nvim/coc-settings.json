@@ -1,5 +1,6 @@
 {
-    "python.pythonPath": "python3",
+    "coc.preferences.formatOnSaveFiletypes": ["python"],
+
     "python.jediEnabled": false,
 
     "eslint.autoFixOnSave": true,

@@ -1,14 +1,14 @@
 font:
   normal:
-    family: Hack
+    family: Fira Mono
     style: regular
 
   bold:
-    family: Hack
+    family: Fira Mono
     style: bold
 
   italic:
-    family: Hack
+    family: Fira Mono
     style: italic
 
   offset:
