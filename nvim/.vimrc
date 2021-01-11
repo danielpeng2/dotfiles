@@ -55,6 +55,9 @@ endif
 " theme
 colorscheme spaceduck
 syntax enable
+highlight VertSplit guibg=NONE
+highlight StatusLine guifg=#1b1c36
+highlight StatusLineNC guifg=#1b1c36
 
 " status bar
 let g:lightline = {
