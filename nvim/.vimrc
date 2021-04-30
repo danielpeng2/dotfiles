@@ -25,6 +25,7 @@ noremap <SPACE> <Nop>
 let mapleader=" "
 
 map <C-p> :GFiles --exclude-standard --others --cached<CR>
+map <leader><C-p> :Files<CR>
 
 nnoremap ]q :cnext<CR>
 nnoremap [q :cprev<CR>
@@ -33,7 +34,7 @@ nnoremap [q :cprev<CR>
 nnoremap <leader>x "_x
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
-xnoremap <leader>p "_dp
+xnoremap <leader>p "_dP
 
 " make j and k move to the next row, not file line
 nnoremap j gj
