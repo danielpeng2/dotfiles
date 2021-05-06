@@ -1,0 +1,51 @@
+#!/bin/bash
+
+alacritty () {
+    filepath=$(realpath ~/.config/alacritty/color.yml)
+
+    if [ ! -f $filepath ]; then
+        echo "alacritty color file does not exist"
+        exit 1
+    fi
+
+    theme=$1
+
+    # replace the theme in the config file, alacritty will live reload
+    sed -i -e "s#^colors: \*.*#colors: *$theme#g" $filepath
+}
+
+tmux () {
+    config_filepath=$(realpath ~/.tmux.conf)
+    colors_filepath=$(realpath ~/.tmux/color-$1.conf)
+
+    if [ ! -f $colors_filepath ]; then
+        echo "tmux color config $colors_filepath does not exist"
+        exit 1
+    fi
+
+    # replace the theme in the tmux config
+    sed -i "s/color-.*\./color-$1./" $config_filepath
+    # reload tmux
+    command tmux source-file $config_filepath
+}
+
+vim () {
+    config_filepath=$(realpath ~/.vimrc)
+    colors_filepath=$(realpath ~/.config/nvim/color-$1.vim)
+
+    if [ ! -f $colors_filepath ]; then
+        echo "vim color config $colors_filepath does not exist"
+        exit 1
+    fi
+
+    # replace the theme in the vim config
+    sed -i "s/color-.*\./color-$1./" $config_filepath
+}
+
+if [ $# -eq 1 ]; then
+    alacritty $1
+    tmux $1
+    vim $1
+elif [ $# -eq 2 ]; then
+    $1 $2
+fi

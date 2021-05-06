@@ -16,6 +16,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'tmsvg/pear-tree'
 Plug 'pineapplegiant/spaceduck'
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 " }}}
@@ -45,24 +46,8 @@ nnoremap <leader>hp :SignifyHunkDiff<CR>
 nnoremap <leader>hu :SignifyHunkUndo<CR>
 " }}}
 
-" Theme / Status Bar{{{
-" true colour support
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
-
-" theme
-colorscheme spaceduck
-syntax enable
-highlight VertSplit guibg=NONE
-highlight StatusLine guifg=#1b1c36
-highlight StatusLineNC guifg=#1b1c36
-
-" status bar
+" Status Bar{{{
 let g:lightline = {
-\ 'colorscheme': 'spaceduck',
 \ 'active': {
 \   'left': [ [ 'mode', 'paste' ],
 \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ],
@@ -141,12 +126,6 @@ set number
 let g:pear_tree_smart_openers = 1
 let g:pear_tree_smart_closers = 1
 let g:pear_tree_smart_backspace = 1
-
-" signify
-highlight clear SignColumn
-highlight SignifySignAdd    ctermfg=green  guifg=#5ccc96 cterm=NONE gui=NONE
-highlight SignifySignDelete ctermfg=red    guifg=#ce6f8f cterm=NONE gui=NONE
-highlight SignifySignChange ctermfg=yellow guifg=#f2ce00 cterm=NONE gui=NONE
 
 " default updatetime 4000ms is not good for async update
 set updatetime=100
@@ -230,4 +209,34 @@ nmap <leader>rn <Plug>(coc-rename)
 
 " Code actions
 nmap <leader>. <Plug>(coc-codeaction)
+" }}}
+
+" Theme{{{
+" true colour support
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+" source colors
+syntax enable
+source ~/.config/nvim/color-spaceduck.vim
+
+" fix gutter highlighting
+highlight clear SignColumn
+
+" stop ThemeSwitch function from being overwritten
+if exists("*ThemeSwitch")
+    finish
+endif
+" switch themes
+function! ThemeSwitch(theme)
+    call system("theme_switch " . a:theme)
+    execute "source ~/.vimrc"
+    " reload Lightline
+    call lightline#init()
+    call lightline#colorscheme()
+    call lightline#update()
+endfunction
 " }}}

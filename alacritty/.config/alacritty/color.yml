@@ -1,0 +1,57 @@
+schemes:
+  spaceduck: &spaceduck
+    primary:
+      background: '#0f111b'
+      foreground: '#ecf0c1'
+
+    # Normal colors
+    normal:
+      black:   '#000000'
+      red:     '#e33400'
+      green:   '#5ccc96'
+      yellow:  '#b3a1e6'
+      blue:    '#00a3cc'
+      magenta: '#f2ce00'
+      cyan:    '#7a5ccc'
+      white:   '#686f9a'
+
+    # Bright colors
+    bright:
+      black:   '#686f9a'
+      red:     '#e33400'
+      green:   '#5ccc96'
+      yellow:  '#b3a1e6'
+      blue:    '#00a3cc'
+      magenta: '#f2ce00'
+      cyan:    '#7a5ccc'
+      white:   '#f0f1ce'
+
+  gruvbox_light: &gruvbox_light
+    primary:
+      # background: '0xf9f5d7' # hard contrast
+      background: '#fbf1c7' # normal
+      foreground: '#3c3836'
+
+    # Normal colors
+    normal:
+      black:   '#fbf1c7'
+      red:     '#cc241d'
+      green:   '#98971a'
+      yellow:  '#d79921'
+      blue:    '#458588'
+      magenta: '#b16286'
+      cyan:    '#689d6a'
+      white:   '#7c6f64'
+
+    # Bright colors
+    bright:
+      black:   '#928374'
+      red:     '#9d0006'
+      green:   '#79740e'
+      yellow:  '#b57614'
+      blue:    '#076678'
+      magenta: '#8f3f71'
+      cyan:    '#427b58'
+      white:   '#3c3836'
+
+colors: *spaceduck
