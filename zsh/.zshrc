@@ -50,43 +50,23 @@ bindkey '^x^e' edit-command-line
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Colorize ls output
-alias ls='ls --color'
-
-# Attach to existing tmux session, otherwise start a new one
-if type tmux > /dev/null && [ -z "$TMUX" ]; then
-    tmux attach || tmux new
-fi
+alias ls='ls -G'
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# add pyenv to path
-export PATH="/home/daniel/.pyenv/bin:$PATH"
-if type pyenv > /dev/null; then
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-fi
-
-# add poetry to path
-if type poetry > /dev/null; then
-    export PATH="$HOME/.poetry/bin:$PATH"
-fi
+# # add pyenv to path
+# export PATH="/home/daniel/.pyenv/bin:$PATH"
+# if type pyenv > /dev/null; then
+#     eval "$(pyenv init -)"
+# fi
 
 # nvm config
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# add spicetify to path
-if type spicetify > /dev/null; then
-    export SPICETIFY_INSTALL="/home/daniel/spicetify-cli"
-    export PATH="$SPICETIFY_INSTALL:$PATH"
-fi
-
-# ssh to school server
-alias login="ssh d6peng@linux.student.cs.uwaterloo.ca"
-alias login_2="ssh d6peng@ubuntu1804-002.student.cs.uwaterloo.ca"
-alias login_4="ssh d6peng@ubuntu1804-004.student.cs.uwaterloo.ca"
-alias login_8="ssh d6peng@ubuntu1804-008.student.cs.uwaterloo.ca"
+# Fix issues in tmux
+export TERM=xterm-256color

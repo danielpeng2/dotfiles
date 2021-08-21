@@ -24,7 +24,7 @@ tmux () {
     fi
 
     # replace the theme in the tmux config
-    sed -i "s/color-.*\./color-$1./" $config_filepath
+    sed -i '' "s/color-.*\./color-$1./" $config_filepath
     # reload tmux
     command tmux source-file $config_filepath
 }
@@ -39,7 +39,7 @@ vim () {
     fi
 
     # replace the theme in the vim config
-    sed -i "s/color-.*\./color-$1./" $config_filepath
+    sed -i '' "s/color-.*\./color-$1./" $config_filepath
 }
 
 if [ $# -eq 1 ]; then
