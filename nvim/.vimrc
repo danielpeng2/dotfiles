@@ -17,6 +17,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tmsvg/pear-tree'
 Plug 'pineapplegiant/spaceduck'
 Plug 'morhetz/gruvbox'
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 call plug#end()
 " }}}
@@ -121,6 +122,9 @@ set signcolumn=yes
 
 " line numbers
 set number
+
+" highlight current line
+set cursorline
 
 " pear-tree smart pairs
 let g:pear_tree_smart_openers = 1
