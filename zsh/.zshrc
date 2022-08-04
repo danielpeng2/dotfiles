@@ -57,6 +57,14 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# Fix colors in tmux, must be set before tmux starts
+export TERM=xterm-256color
+
+# Attach to existing tmux session, otherwise start a new one
+if type tmux > /dev/null && [ -z "$TMUX" ]; then
+    tmux attach || tmux new
+fi
+
 # # add pyenv to path
 # export PATH="/home/daniel/.pyenv/bin:$PATH"
 # if type pyenv > /dev/null; then
