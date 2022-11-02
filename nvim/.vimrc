@@ -18,6 +18,7 @@ Plug 'tmsvg/pear-tree'
 Plug 'pineapplegiant/spaceduck'
 Plug 'morhetz/gruvbox'
 Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'liuchengxu/vista.vim'
 
 call plug#end()
 " }}}
@@ -85,6 +86,7 @@ set smarttab
 set autoindent
 " custom indenting by file type
 autocmd Filetype javascript setlocal shiftwidth=2 tabstop=2
+autocmd Filetype javascriptreact setlocal shiftwidth=2 tabstop=2
 autocmd Filetype typescript setlocal shiftwidth=2 tabstop=2
 autocmd Filetype typescriptreact setlocal shiftwidth=2 tabstop=2
 autocmd Filetype json setlocal shiftwidth=2 tabstop=2
@@ -134,6 +136,8 @@ let g:pear_tree_smart_backspace = 1
 " default updatetime 4000ms is not good for async update
 set updatetime=100
 
+set mouse=
+
 " search only content, not filenames in AG
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 " }}}
@@ -163,26 +167,30 @@ if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
 
-" map <tab> to trigger completion and navigate to next item in coc
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-inoremap <silent><expr> <C-x><C-z> coc#pum#visible() ? coc#pum#stop() : "\<C-x>\<C-z>"
-" remap for complete to use tab and <cr>
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-    \ coc#pum#visible() ? coc#pum#next(1):
-    \ <SID>check_back_space() ? "\<Tab>" :
-    \ coc#refresh()
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
 else
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+  inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
 " Use `[g` and `]g` to navigate diagnostics
@@ -213,6 +221,14 @@ nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>. <Plug>(coc-codeaction)
 " }}}
 
+" Vista {{{
+let g:vista_default_executive = 'coc'
+let g:vista#renderer#enable_icon = 0
+let g:vista_ignore_kinds = ['Variable']
+let g:vista_sidebar_width = 40
+map <C-s> :Vista!!<CR>
+" }}}
+
 " Theme{{{
 " true colour support
 if exists('+termguicolors')
@@ -241,4 +257,18 @@ function! ThemeSwitch(theme)
     call lightline#colorscheme()
     call lightline#update()
 endfunction
+" }}}
+
+" Functions {{{
+function GetGhUrl()
+    let line = line('.')
+    let filepath = LightlineFilename()
+    let url = 'REPLACE ME' . filepath . '$' . line
+    let @* = url
+    echo 'copied ' . url . ' to the clipboard'
+endfunction
+nnoremap <leader>gl :call GetGhUrl() <cr>
+
+command! -bang -nargs=* Rg2
+  \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".<q-args>, 1, {'dir': system('git -C '.expand('%:p:h').' rev-parse --show-toplevel 2> /dev/null')[:-2]}, <bang>0)
 " }}}

@@ -1,8 +1,13 @@
 {
-    "coc.preferences.formatOnSaveFiletypes": ["python"],
+    "coc.preferences.formatOnSaveFiletypes": ["python", "javascript", "javascriptreact", "typescript", "typescriptreact"],
 
     "python.jediEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.formatting.provider": "black",
 
     "eslint.autoFixOnSave": true,
-    "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"]
+    "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+
+    "typescript.updateImportsOnFileMove.enable": false,
+    "javascript.updateImportsOnFileMove.enable": false
 }
