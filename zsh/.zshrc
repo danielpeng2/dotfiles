@@ -61,9 +61,9 @@ fi
 export TERM=xterm-256color
 
 # Attach to existing tmux session, otherwise start a new one
-if type tmux > /dev/null && [ -z "$TMUX" ]; then
-    tmux attach || tmux new
-fi
+# if type tmux > /dev/null && [ -z "$TMUX" ]; then
+#     tmux attach || tmux new
+# fi
 
 # # add pyenv to path
 # export PATH="/home/daniel/.pyenv/bin:$PATH"
@@ -75,6 +75,3 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Fix issues in tmux
-export TERM=xterm-256color
