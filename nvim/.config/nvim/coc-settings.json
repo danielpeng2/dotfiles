@@ -1,5 +1,6 @@
 {
-    "coc.preferences.formatOnSaveFiletypes": ["python", "javascript", "javascriptreact", "typescript", "typescriptreact"],
+    "inlayHint.enable": false,
+    "coc.preferences.formatOnSaveFiletypes": ["python", "javascript", "javascriptreact", "typescript", "typescriptreact", "rust"],
 
     "python.jediEnabled": false,
     "python.linting.flake8Enabled": true,
@@ -9,5 +10,7 @@
     "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
 
     "typescript.updateImportsOnFileMove.enable": false,
-    "javascript.updateImportsOnFileMove.enable": false
+    "javascript.updateImportsOnFileMove.enable": false,
+
+    "rust-analyzer.server.path": "/Users/daniel/.cargo/bin/rust-analyzer"
 }
