@@ -1,0 +1,6 @@
+---
+"editor_view:clear_lines": f8
+"pane_group:navigate_right": shift-cmd-L
+"pane_group:navigate_left": shift-cmd-H
+"pane_group:navigate_up": shift-cmd-K
+"pane_group:navigate_down": shift-cmd-J
